@@ -1,0 +1,166 @@
+/home/jupyter/venvs/lab_env/lib/python3.12/site-packages/albumentations/__init__.py:24: UserWarning: A new version of Albumentations is available: 2.0.8 (you have 1.4.24). Upgrade using: pip install -U albumentations. To disable automatic update checks, set the environment variable NO_ALBUMENTATIONS_UPDATE to 1.
+  check_for_updates()
+2026-03-27 20:11:35,399 [INFO] 
+=====  Running Parameters    =====
+2026-03-27 20:11:35,399 [INFO] {
+    "accum_grad_iters": 4,
+    "amp": true,
+    "batch_size_eval": 16,
+    "batch_size_train": 16,
+    "device": "cuda",
+    "dist_url": "env://",
+    "distributed": false,
+    "distributed_type": "ddp",
+    "evaluate": false,
+    "generate_cfg": {
+        "temperature": 0.0
+    },
+    "init_lr": 5e-05,
+    "iters_per_inner_epoch": 25,
+    "lr_sched": "linear_warmup_cosine_lr",
+    "max_iters": 200,
+    "milestone": [
+        1
+    ],
+    "min_lr": 1e-06,
+    "num_workers": 4,
+    "output_dir": "/home/jupyter/HocTap/son/Nhom11_UniMERNet/outputs/my100k_10k_small",
+    "resume_ckpt_path": null,
+    "runner": "runner_iter",
+    "seed": 42,
+    "task": "unimernet_train",
+    "train_splits": [
+        "train"
+    ],
+    "valid_splits": [
+        "eval"
+    ],
+    "warmup_lr": 1e-06,
+    "warmup_steps": 10,
+    "weight_decay": 0.01,
+    "world_size": 1
+}
+2026-03-27 20:11:35,399 [INFO] 
+======  Dataset Attributes  ======
+2026-03-27 20:11:35,399 [INFO] 
+======== formula_rec_train =======
+2026-03-27 20:11:35,400 [INFO] {
+    "build_info": {
+        "annotation": "/home/jupyter/HocTap/son/Nhom11_UniMERNet/data/Images_100k/train/train.txt",
+        "images": "/home/jupyter/HocTap/son/Nhom11_UniMERNet/data/Images_100k/train/images"
+    },
+    "data_type": "images",
+    "sample_ratio": 1,
+    "text_processor": {
+        "train": {
+            "max_words": 512,
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "train": {
+            "image_size": [
+                192,
+                672
+            ],
+            "name": "formula_image_train"
+        }
+    }
+}
+2026-03-27 20:11:35,400 [INFO] 
+======== formula_rec_eval =======
+2026-03-27 20:11:35,400 [INFO] {
+    "build_info": {
+        "annotation": "/home/jupyter/HocTap/son/Nhom11_UniMERNet/data/Images_100k/val/val.txt",
+        "images": "/home/jupyter/HocTap/son/Nhom11_UniMERNet/data/Images_100k/val/images"
+    },
+    "data_type": "images",
+    "text_processor": {
+        "eval": {
+            "max_words": 512,
+            "name": "blip_caption"
+        }
+    },
+    "vis_processor": {
+        "eval": {
+            "image_size": [
+                192,
+                672
+            ],
+            "name": "formula_image_eval"
+        }
+    }
+}
+2026-03-27 20:11:35,400 [INFO] 
+======  Model Attributes  ======
+2026-03-27 20:11:35,400 [INFO] {
+    "arch": "unimernet",
+    "finetuned": "",
+    "load_finetuned": false,
+    "load_pretrained": false,
+    "model_config": {
+        "max_seq_len": 512,
+        "model_name": "/home/jupyter/HocTap/son/Nhom11_UniMERNet/models/unimernet"
+    },
+    "model_name": "unimernet",
+    "model_type": "unimernet",
+    "pretrained": "path/to/pretrained/weight",
+    "tokenizer_config": {
+        "path": "/home/jupyter/HocTap/son/Nhom11_UniMERNet/models/unimernet"
+    },
+    "tokenizer_name": "nougat"
+}
+2026-03-27 20:11:35,401 [INFO] Building Formula Recgnition Train datasets ...
+/home/jupyter/venvs/lab_env/lib/python3.12/site-packages/pydantic/_internal/_serializers.py:44: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `dict[str, any]` - serialized value may not be as expected [field_name='noise_params', input_value=UniformParams(noise_type=... 0.058823529411764705)]), input_type=UniformParams])
+  v = handler(item, index)
+/home/jupyter/venvs/lab_env/lib/python3.12/site-packages/pydantic/main.py:464: UserWarning: Pydantic serializer warnings:
+  PydanticSerializationUnexpectedValue(Expected `dict[str, any]` - serialized value may not be as expected [field_name='noise_params', input_value=UniformParams(noise_type=... 0.058823529411764705)]), input_type=UniformParams])
+  return self.__pydantic_serializer__.to_python(
+2026-03-27 20:11:36,614 [INFO] Building Formula Recgnition Eval datasets ...
+/home/jupyter/venvs/lab_env/lib/python3.12/site-packages/transformers/models/auto/image_processing_auto.py:510: FutureWarning: The image_processor_class argument is deprecated and will be removed in v4.42. Please use `slow_image_processor_class`, or `fast_image_processor_class` instead
+  warnings.warn(
+2026-03-27 20:11:48,731 [INFO] Start training, max_iters=200, in total 8 inner epochs.
+2026-03-27 20:11:48,731 [INFO] Loaded 100000 records for train split from the dataset.
+2026-03-27 20:11:48,731 [INFO] Loaded 10000 records for eval split from the dataset.
+2026-03-27 20:11:49,338 [INFO] number of trainable parameters: 295921336
+/home/jupyter/HocTap/son/Nhom11_UniMERNet/unimernet/runners/runner_base.py:142: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self._scaler = torch.cuda.amp.GradScaler()
+2026-03-27 20:11:49,340 [INFO] Start training epoch 0, 25 iters per inner epoch.
+Not using distributed mode
+total 100000 Im2LatexDataset samples
+{'image': tensor([[[-4.5633, -4.5633, -4.5633,  ..., -4.5633, -4.5633, -4.5633],
+         [-4.5633, -4.5633, -4.5633,  ..., -4.5633, -4.5633, -4.5633],
+         [-4.5633, -4.5633, -4.5633,  ..., -4.5633, -4.5633, -4.5633],
+         ...,
+         [-4.5633, -4.5633, -4.5633,  ..., -4.5633, -4.5633, -4.5633],
+         [-4.5633, -4.5633, -4.5633,  ..., -4.5633, -4.5633, -4.5633],
+         [-4.5633, -4.5633, -4.5633,  ..., -4.5633, -4.5633, -4.5633]]]), 'text_input': 'z ^ { - b } \\, _ { 2 } F _ { 1 } \\left( b , 1 + b - c ; 1 + b - a ; z ^ { - 1 } \\right) .', 'id': 0}
+total 10000 Im2LatexDataset samples
+{'image': tensor([[[-4.5633, -4.5633, -4.5633,  ..., -4.5633, -4.5633, -4.5633],
+         [-4.5633, -4.5633, -4.5633,  ..., -4.5633, -4.5633, -4.5633],
+         [-4.5633, -4.5633, -4.5633,  ..., -4.5633, -4.5633, -4.5633],
+         ...,
+         [-4.5633, -4.5633, -4.5633,  ..., -4.5633, -4.5633, -4.5633],
+         [-4.5633, -4.5633, -4.5633,  ..., -4.5633, -4.5633, -4.5633],
+         [-4.5633, -4.5633, -4.5633,  ..., -4.5633, -4.5633, -4.5633]]]), 'text_input': '\\sum \\limits _ { E = n } ^ { \\sum f } z + \\frac { \\sum \\theta } { C }', 'id': 0}
+CustomVisionEncoderDecoderModel init
+VariableUnimerNetModel init
+VariableUnimerNetPatchEmbeddings init
+VariableUnimerNetModel init
+VariableUnimerNetPatchEmbeddings init
+CustomMBartForCausalLM init
+CustomMBartDecoder init
+/home/jupyter/HocTap/son/Nhom11_UniMERNet/unimernet/tasks/base_task.py:218: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=use_amp):
+/home/jupyter/HocTap/son/Nhom11_UniMERNet/unimernet/models/blip2_models/blip2.py:46: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  return torch.cuda.amp.autocast(dtype=dtype)
+2026-03-27 20:11:59,276 [INFO] Averaged stats: lr: 0.0000  loss: 1.7296
+2026-03-27 20:11:59,279 [INFO] Evaluating on eval.
+Train: data epoch: [0]; inner epoch [0]  [ 0/25]  eta: 0:02:10  lr: 0.000001  loss: 2.7380  time: 5.2060  data: 0.0000  max mem: 15409
+Train: data epoch: [0]; inner epoch [0]  [24/25]  eta: 0:00:00  lr: 0.000048  loss: 1.2076  time: 0.1914  data: 0.0000  max mem: 22623
+Train: data epoch: [0]; inner epoch [0] Total time: 0:00:09 (0.3974 s / it)
+/home/jupyter/venvs/lab_env/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:540: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/home/jupyter/venvs/lab_env/lib/python3.12/site-packages/transformers/generation/configuration_utils.py:545: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.95` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(

@@ -135,9 +135,7 @@ class UniMERNet_Train(BaseTask):
             token_accs.append(tok_acc)
 
         # bleu_score = metrics.bleu_score(all_pred_tokens, all_truth_tokens)
-        # bleu = evaluate.load("bleu", keep_in_memory=True, experiment_id=random.randint(1, 1e8))
-        #Sửa thành
-        bleu = evaluate.load("bleu", keep_in_memory=True, experiment_id=random.randint(1, int(1e8)))
+        bleu = evaluate.load("bleu", keep_in_memory=True, experiment_id=random.randint(1, 1e8))
         bleu_results = bleu.compute(predictions=all_pred_strs, references=all_truth_strs)
         bleu_score = bleu_results['bleu']
         
