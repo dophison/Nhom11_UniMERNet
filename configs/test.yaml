@@ -1,0 +1,45 @@
+model:
+  arch: unimernet
+  model_type: unimernet
+
+  model_name: /home/jupyter/HocTap/son/Nhom11_UniMERNet/models/unimernet
+
+  model_config:
+    model_name: /home/jupyter/HocTap/son/Nhom11_UniMERNet/models/unimernet
+    max_seq_len: 1536
+
+  tokenizer_config:
+    path: /home/jupyter/HocTap/son/Nhom11_UniMERNet/models/unimernet
+
+  load_pretrained: false
+  load_finetuned: true
+  finetuned: /home/jupyter/HocTap/son/Nhom11_UniMERNet/outputs/my500k_50k/20260401215/checkpoint_best.pth
+
+datasets:
+  formula_rec_eval:
+    vis_processor:
+      eval:
+        name: "formula_image_eval"
+        image_size:
+          - 192
+          - 672
+    text_processor:
+      eval:
+        name: "blip_caption"
+        max_words: 1536
+    build_info:
+      base_dir: /home/jupyter/HocTap/son/Nhom11_UniMERNet/data/test/UniMER-Test
+
+run:
+  task: unimernet_train
+  seed: 42
+  batch_size_eval: 4
+  num_workers: 4
+  device: "cuda"
+  evaluate: false
+  report_metric: true
+  agg_metric: "edit_distance"
+  generate_cfg:
+    temperature: 0.0
+    do_sample: false
+    top_p: 0.95

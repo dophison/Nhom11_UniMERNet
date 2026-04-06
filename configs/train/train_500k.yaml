@@ -1,0 +1,79 @@
+model:
+  arch: unimernet
+  model_type: unimernet
+  model_config:
+    model_name: /home/jupyter/HocTap/son/Nhom11_UniMERNet/models/unimernet
+    max_seq_len: 512
+
+  tokenizer_name: nougat
+  tokenizer_config:
+    path: /home/jupyter/HocTap/son/Nhom11_UniMERNet/models/unimernet
+
+  load_pretrained: false
+  load_finetuned: false
+
+datasets:
+  formula_rec_train:
+    sample_ratio: 1
+    vis_processor:
+      train:
+        name: formula_image_train
+        image_size: [192, 672]
+    text_processor:
+      train:
+        name: blip_caption
+        max_words: 512
+    build_info:
+      images: /home/jupyter/HocTap/son/Nhom11_UniMERNet/data/Images_500k/train/images
+      annotation: /home/jupyter/HocTap/son/Nhom11_UniMERNet/data/Images_500k/train/train.txt
+
+  formula_rec_eval:
+    vis_processor:
+      eval:
+        name: formula_image_eval
+        image_size: [192, 672]
+    text_processor:
+      eval:
+        name: blip_caption
+        max_words: 512
+    build_info:
+      images: /home/jupyter/HocTap/son/Nhom11_UniMERNet/data/Images_500k/val/images
+      annotation:  /home/jupyter/HocTap/son/Nhom11_UniMERNet/data/Images_500k/val/val.txt
+
+run:
+  runner: runner_iter
+  task: unimernet_train
+
+  lr_sched: linear_warmup_cosine_lr
+  init_lr: 5e-5
+  min_lr: 1e-6
+  warmup_lr: 1e-6
+  weight_decay: 0.01
+
+  batch_size_train: 8
+  batch_size_eval: 8
+  accum_grad_iters: 4
+  num_workers: 4
+
+  warmup_steps: 10
+  iters_per_inner_epoch: 25
+  max_iters: 200
+  milestone: [1]
+
+  seed: 42
+  output_dir: /home/jupyter/HocTap/son/Nhom11_UniMERNet/outputs/my500k_50k
+  amp: true
+  resume_ckpt_path: null
+
+  evaluate: false
+  train_splits: [train]
+  valid_splits: [eval]
+
+  device: cuda
+  world_size: 1
+  dist_url: env://
+  distributed: false
+  distributed_type: ddp
+
+  generate_cfg:
+    temperature: 0.0
