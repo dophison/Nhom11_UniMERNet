@@ -8,14 +8,14 @@ __pycache__/
 *.tar
 *.out
 # *.log
-*.txt
+#*.txt
 .ipynb_checkpoints/*
 
 # Ignore VS Code configuration directory
 .vscode/
 
 # Ignore model outputs
-outputs/
+#outputs/
 outputs_refactor/
 data/
 models/*
