@@ -2,12 +2,12 @@ model:
   arch: unimernet
   model_type: unimernet
   model_config:
-    model_name: /home/jupyter/HocTap/son/Nhom11_UniMERNet/models/unimernet
+    model_name: /home/sondp/Nhom11_UniMERNet/models/unimernet
     max_seq_len: 512
 
   tokenizer_name: nougat
   tokenizer_config:
-    path: /home/jupyter/HocTap/son/Nhom11_UniMERNet/models/unimernet
+    path: /home/sondp/Nhom11_UniMERNet/models/unimernet
 
   load_pretrained: false
   load_finetuned: false
@@ -24,8 +24,8 @@ datasets:
         name: blip_caption
         max_words: 512
     build_info:
-      images: /home/jupyter/HocTap/son/Nhom11_UniMERNet/data/Images_100k/train/images
-      annotation: /home/jupyter/HocTap/son/Nhom11_UniMERNet/data/Images_100k/train/train.txt
+      images: /home/sondp/Nhom11_UniMERNet/data/Images_100k/train/images
+      annotation: /home/sondp/Nhom11_UniMERNet/data/Images_100k/train/train.txt
 
   formula_rec_eval:
     vis_processor:
@@ -37,8 +37,8 @@ datasets:
         name: blip_caption
         max_words: 512
     build_info:
-      images: /home/jupyter/HocTap/son/Nhom11_UniMERNet/data/Images_100k/val/images
-      annotation:  /home/jupyter/HocTap/son/Nhom11_UniMERNet/data/Images_100k/val/val.txt
+      images: /home/sondp/Nhom11_UniMERNet/data/Images_100k/val/images
+      annotation:  /home/sondp/Nhom11_UniMERNet/data/Images_100k/val/val.txt
 
 run:
   runner: runner_iter
@@ -50,18 +50,18 @@ run:
   warmup_lr: 1e-6
   weight_decay: 0.01
 
-  batch_size_train: 16
-  batch_size_eval: 16
-  accum_grad_iters: 4
+  batch_size_train: 2
+  batch_size_eval: 4
+  accum_grad_iters: 8
   num_workers: 4
 
   warmup_steps: 10
-  iters_per_inner_epoch: 25
-  max_iters: 200
+  iters_per_inner_epoch: 1000
+  max_iters: 125000
   milestone: [1]
 
   seed: 42
-  output_dir: /home/jupyter/HocTap/son/Nhom11_UniMERNet/outputs/my100k_10k_small
+  output_dir: /home/sondp/Nhom11_UniMERNet/outputs/my100k_10k_small
   amp: true
   resume_ckpt_path: null
 

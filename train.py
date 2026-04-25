@@ -1,7 +1,7 @@
 import argparse
 import os
 import random
-
+import torch.distributed as dist
 import numpy as np
 import torch
 import torch.backends.cudnn as cudnn
@@ -75,8 +75,19 @@ def main():
 
     cfg = Config(parse_args())
 
-    init_distributed_mode(cfg.run_cfg)
-
+    #init_distributed_mode(cfg.run_cfg)
+    if cfg.run_cfg.distributed:
+        init_distributed_mode(cfg.run_cfg)
+    else:
+        # Khởi tạo mặc định cho 1 GPU đơn lẻ để tránh lỗi dist.barrier()
+        if not dist.is_initialized():
+            print(">>> Initializing dummy distributed mode for single GPU...")
+            dist.init_process_group(
+                backend="nccl", 
+                init_method="tcp://127.0.0.1:12345", 
+                rank=0, 
+                world_size=1
+            )
     setup_seeds(cfg)
 
     # set after init_distributed_mode() to only log on master.
